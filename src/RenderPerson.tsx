@@ -11,7 +11,7 @@ export function renderPerson(person: {
         <li key={person.id} className={"people-list"}>
     <img src={getImageUrl(person)} alt={person.name}/>&nbsp;
     <div className="card-text">
-        <b>{person.name}</b><br/>
+        <b>{person.name}</b>: {person.profession}<br/>
         <span>known for: {person.accomplishment}</span>
     </div>
     </li>
