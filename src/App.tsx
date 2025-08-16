@@ -7,48 +7,30 @@ function App() {
 
     const [view, setView] = useState<'name' | 'age' | 'profession' | 'chemists'>("name")
 
-    //Precompute the list of people by age and name, and chemists
-    const listItemsAge = person
-        .sort((a, b) =>
-            a.age - b.age)
-        .map((person) =>
-            renderPerson(person));
-
-    const listItemsName = person
-        .sort((a, b) =>
-            a.name.localeCompare(b.name))
-        .map((person) =>
-            renderPerson(person));
-
-    const listProfession = person
-        .sort((a, b) =>
-            a.profession.localeCompare(b.profession))
-        .map((person) =>
-            renderPerson(person));
-
-    const listOfChemists = person
-        .filter((p) => p.profession === "chemist")
-        .map((p) =>
-            renderPerson(p));
-
-
     let displayedList;
     let title;
     switch (view) {
         case "chemists":
-            displayedList = listOfChemists;
+            displayedList = [...person].filter(p =>
+                p.profession === "chemist").map(renderPerson);
             title = "List of Chemists";
             break;
         case "age":
-            displayedList = listItemsAge;
+            displayedList = [...person].sort((a, b) =>
+                a.age - b.age)
+                .map(renderPerson);
             title = "List of people by age";
             break;
         case "profession":
-            displayedList = listProfession;
+            displayedList = [...person].sort((a, b) =>
+                a.profession.localeCompare(b.profession))
+                .map(renderPerson);
             title = "List of people by profession";
             break;
         default:
-            displayedList = listItemsName;
+            displayedList = [...person].sort((a, b) =>
+            a.name.localeCompare(b.name))
+                .map(renderPerson);
             title = "List of people by name";
     }
 

@@ -9,9 +9,9 @@ export function renderPerson(person: {
 }) {
     return (
         <li key={person.id} className={"people-list"}>
-    <img src={getImageUrl(person)} alt={person.name}/>&nbsp;
+    <img src={getImageUrl(person)} alt={person.name} className="photo"/>&nbsp;
     <div className="card-text">
-        <b>{person.name}</b>: {person.profession}<br/>
+        <b>{person.name}</b> ({person.age}): {person.profession}<br/>
         <span>known for: {person.accomplishment}</span>
     </div>
     </li>
