@@ -28,26 +28,24 @@ function App() {
     }
 
     let displayedList;
-    let title;
     switch (view) {
         case "age":
             displayedList = [...sortedPeople].sort((a, b) =>
                 a.age - b.age)
                 .map(renderPerson);
-            title = "List of people by age";
             break;
         case "profession":
             displayedList = [...sortedPeople].sort((a, b) =>
                 a.profession.localeCompare(b.profession))
                 .map(renderPerson);
-            title = "List of people by profession";
             break;
         default:
             displayedList = [...sortedPeople].sort((a, b) =>
                 a.name.localeCompare(b.name))
                 .map(renderPerson);
-            title = "List of people by name";
     }
+
+    const title = `List of ${sortView == "scientist" ? "scientist" : (sortView+" people")} by ${view}`;
 
     return (
         <>
@@ -77,6 +75,14 @@ function App() {
                     className={sortView === "famous" ? "active-btn" : "button"}
                     onClick={() => setSortView("famous")}>Famous</button>
             </div>
+            <div>
+                <input
+                    type="text"
+                    name="proba"
+                    onChange={(e) => console.log(e.target.value)}/>
+                <input type="date" name="date" onChange={(e) => console.log("Date: " + e.target.value)} />
+            </div>
+
         </>
     )
 }
