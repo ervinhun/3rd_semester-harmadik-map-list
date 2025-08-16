@@ -60,3 +60,30 @@
     border-radius: 50%;
     object-fit: cover;
 }
+
+.scientist-color {
+    color: #007bff;
+}
+
+.famouser-color {
+    color: #efc829;
+}
+
+button {
+    padding: 6px 12px;
+    margin-right: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e9ecef;
+}
+
+button.active-btn {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+

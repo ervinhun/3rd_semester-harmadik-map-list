@@ -9,17 +9,22 @@ function App() {
     const [view, setView] = useState<'name' | 'age' | 'profession'>("name")
     const [sortView, setSortView] = useState<'all' | 'scientist' | 'famous'>("all")
 
+    const allPeople =
+        [...person.map(p =>
+        ({...p, group: "s" as const})),
+            ...famousPeople.map (p => ({...p, group: "f" as const}))];
+
 
     let sortedPeople;
     switch (sortView) {
         case "scientist":
-            sortedPeople = [...person];
+            sortedPeople = allPeople.filter(p => p.group === "s");
             break;
         case "famous":
-            sortedPeople = [...famousPeople];
+            sortedPeople = allPeople.filter(p => p.group === "f");
             break;
         default:
-            sortedPeople = [...person, ...famousPeople];
+            sortedPeople = allPeople
     }
 
     let displayedList;
@@ -49,14 +54,28 @@ function App() {
             <h1>{title}</h1>
             <ul>{displayedList}</ul>
             <div style={{marginBottom: "1rem"}}>
-                <button onClick={() => setView("name")}>Name</button>
-                <button onClick={() => setView("age")}>Age</button>
-                <button onClick={() => setView("profession")}>Profession</button>
+                Sort by: &nbsp;
+                <button
+                    className={view === "name" ? "active-btn" : "button"}
+                    onClick={() => setView("name")}>Name</button>
+                <button
+                    className={view === "age" ? "active-btn" : "button"}
+                    onClick={() => setView("age")}>Age</button>
+                <button
+                    className={view === "profession" ? "active-btn" : "button"}
+                    onClick={() => setView("profession")}>Profession</button>
             </div>
             <div style={{marginBottom: "1rem"}}>
-                <button onClick={() => setSortView("all")}>All</button>
-                <button onClick={() => setSortView("scientist")}>Scientist</button>
-                <button onClick={() => setSortView("famous")}>Famous</button>
+                Filter by: &nbsp;
+                <button
+                    className={sortView === "all" ? "active-btn" : "button"}
+                    onClick={() => setSortView("all")}>All</button>
+                <button
+                    className={sortView === "scientist" ? "active-btn" : "button"}
+                    onClick={() => setSortView("scientist")}>Scientist</button>
+                <button
+                    className={sortView === "famous" ? "active-btn" : "button"}
+                    onClick={() => setSortView("famous")}>Famous</button>
             </div>
         </>
     )
